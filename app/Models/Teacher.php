@@ -19,8 +19,8 @@ class Teacher extends Model
      * ******************************
      * un corso ha un professore 
      */
-  /*   public function course()
+    public function course()
     {
-        return $this->belongsTo(Course::class);
-    } */
+        return $this->hasOne(Course::class);
+    }
 }

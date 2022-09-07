@@ -13,6 +13,7 @@
                     <tr>
                         <th scope="col">Corso di</th>
                         <th scope="col">Città</th>
+                        <th scope="col">Professori</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -21,6 +22,7 @@
                         <tr>
                             <td>{{ $course->name }}</td>
                             <td>{{ $course->city }}</td>
+                            <td>{{ $course->teacher->name }} {{ $course->teacher->surname }}</td>
                             <td><a class="btn btn-primary" href="{{ route('courses.show', $course) }}"><i class="fa-solid fa-eye"></i></a></td>
                         </tr>
                     @empty

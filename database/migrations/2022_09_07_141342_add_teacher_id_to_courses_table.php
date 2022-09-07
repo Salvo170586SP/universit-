@@ -13,21 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('teachers', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('surname');
-            $table->timestamps();
+        Schema::table('courses', function (Blueprint $table) {
+            $table->unsignedBigInteger('teacher_id')->nullable();
+            $table->foreign('teacher_id')->references('id')->on('teachers');
         });
     }
 
     /**
-     * Reverse the migrations. 
+     * Reverse the migrations.
      *
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('teachers');
+        Schema::table('courses', function (Blueprint $table) {
+            $table->dropColumn('teacher_id');
+        });
     }
 };

@@ -15,6 +15,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ route('courses.index') }}">Corsi</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('teachers.index') }}">Professori</a>
+          </li>
         </ul>
       </div>
     </div>
