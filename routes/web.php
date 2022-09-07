@@ -20,4 +20,13 @@ Route::get('/', function () {
 
 
 //STUDENTI
-Route::resource('/students', StudentController::class);
+Route::resource('students', StudentController::class);
+/* 
+  GET|HEAD        students ....................................... students.index › StudentController@index  
+  POST            students ....................................... students.store › StudentController@store  
+  GET|HEAD        students/create ................................ students.create › StudentController@create  
+  GET|HEAD        students/{student} ............................. students.show › StudentController@show  
+  PUT|PATCH       students/{student} ............................. students.update › StudentController@update  
+  DELETE          students/{student} ............................. students.destroy › StudentController@destroy  
+  GET|HEAD        students/{student}/edit ........................ students.edit › StudentController@edit 
+*/

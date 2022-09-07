@@ -14,7 +14,9 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $students = Student::all();
+
+        return view('students.index', compact('students'));
     }
 
     /**
@@ -24,7 +26,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('students.create');
     }
 
     /**
@@ -35,7 +37,24 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'surname' => 'required',
+            'age' => 'required',
+            'course' => 'required',
+        ]);
+
+        $student = new Student;
+
+        $student->name = $request->name;
+        $student->surname = $request->surname;
+        $student->age = $request->age;
+        $student->course = $request->course;
+
+        $student->save();
+
+        return redirect()->route('students.index');
+
     }
 
     /**
@@ -44,9 +63,11 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show($id)
     {
-        //
+        $student = Student::findOrFail($id);
+
+        return view('students.show', compact('student'));
     }
 
     /**
