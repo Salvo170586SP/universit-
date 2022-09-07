@@ -78,7 +78,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        return view('students.edit', compact('student'));
     }
 
     /**
@@ -88,9 +88,23 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'surname' => 'required',
+            'age' => 'required',
+            'course' => 'required',
+        ]);
+
+        $student = Student::findOrFail($id);
+
+        $student->fill($request->all());
+
+        $student->save();
+
+        return redirect()->route('students.show', $id);
+
     }
 
     /**
@@ -101,6 +115,9 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        $student->delete();
+
+        return redirect()->route('students.index');
+        
     }
 }

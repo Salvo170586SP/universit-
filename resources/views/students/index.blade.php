@@ -1,6 +1,6 @@
 @extends('home')
 
-@section('title','Lista studenti')
+@section('title', 'Lista studenti')
 
 @section('content')
     <div class="row">
@@ -9,7 +9,7 @@
             <a class="btn btn-outline-primary" href="{{ route('students.create') }}">Aggiungi nuovo studente</a>
         </div>
         <div class="col-12">
-            <table class="table">
+            <table class="table shadow">
                 <thead>
                     <tr>
                         <th scope="col">Nome</th>
@@ -26,15 +26,22 @@
                             <td>{{ $student->surname }}</td>
                             <td>{{ $student->age }}</td>
                             <td>{{ $student->course }}</td>
-                            <td>
-                                <a class="btn btn-sm btn-primary" href="{{ route('students.show', $student->id ) }}">Dettaglio</a>
-                                <a class="btn btn-sm btn-secondary" href="">Modifica</a>
+                            <td class="d-flex">
+                                <a class="btn btn-sm btn-primary"
+                                    href="{{ route('students.show', $student->id) }}">Dettaglio</a>
+                                <a class="btn btn-sm btn-secondary mx-2"
+                                    href="{{ route('students.edit', $student->id) }}">Modifica</a>
+                                <form action="{{ route('students.destroy', $student) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger">Cancella</button>
+                                </form>
                             </td>
                         </tr>
                     @empty
-                    <tr>
-                        <td>Non ci sono studenti</td>
-                    </tr>
+                        <tr>
+                            <td>Non ci sono studenti</td>
+                        </tr>
                     @endforelse
 
                 </tbody>
