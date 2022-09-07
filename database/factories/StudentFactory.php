@@ -20,7 +20,6 @@ class StudentFactory extends Factory
             'name' => $this->faker->firstNameMale(),
             'surname' => $this->faker->lastName(),
             'age' => $this->faker->numberBetween(20, 30),
-            'course' => $this->faker->randomElement(['Medicina', 'Ingegneria', 'Scienze Politiche', 'Economia']),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\CourseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +30,18 @@ Route::resource('students', StudentController::class);
   PUT|PATCH       students/{student} ............................. students.update › StudentController@update  
   DELETE          students/{student} ............................. students.destroy › StudentController@destroy  
   GET|HEAD        students/{student}/edit ........................ students.edit › StudentController@edit 
+*/
+
+
+
+//CORSI
+Route::resource('courses', CourseController::class);
+/* 
+  GET|HEAD        courses ........................................ courses.index › CourseController@index
+  POST            courses ........................................ courses.store › CourseController@store
+  GET|HEAD        courses/create ................................. courses.create › CourseController@create
+  GET|HEAD        courses/{course} ............................... courses.show › CourseController@show
+  PUT|PATCH       courses/{course} ............................... courses.update › CourseController@update
+  DELETE          courses/{course} ............................... courses.destroy › CourseController@destroy
+  GET|HEAD        courses/{course}/edit .......................... courses.edit › CourseController@edit
 */

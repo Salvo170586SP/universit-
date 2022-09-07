@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -14,7 +15,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::all();
+        $students = Student::with('course')->get();
 
         return view('students.index', compact('students'));
     }
@@ -26,7 +27,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        $courses = Course::all();
+        return view('students.create','courses');
     }
 
     /**
@@ -41,7 +43,7 @@ class StudentController extends Controller
             'name' => 'required',
             'surname' => 'required',
             'age' => 'required',
-            'course' => 'required',
+            'course_id' => 'required',
         ]);
 
         $student = new Student;
@@ -49,7 +51,7 @@ class StudentController extends Controller
         $student->name = $request->name;
         $student->surname = $request->surname;
         $student->age = $request->age;
-        $student->course = $request->course;
+        $student->course_id = $request->course_id;
 
         $student->save();
 
@@ -78,7 +80,8 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        return view('students.edit', compact('student'));
+        $courses = Course::all();
+        return view('students.edit', compact('student','courses'));
     }
 
     /**
@@ -94,7 +97,7 @@ class StudentController extends Controller
             'name' => 'required',
             'surname' => 'required',
             'age' => 'required',
-            'course' => 'required',
+            'course_id' => 'required',
         ]);
 
         $student = Student::findOrFail($id);

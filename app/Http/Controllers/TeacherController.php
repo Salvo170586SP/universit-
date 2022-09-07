@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Course;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
-class CourseController extends Controller
+class TeacherController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::all();
-
-        return view('courses.index', compact('courses'));
+        //
     }
 
     /**
@@ -43,24 +41,21 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Course  $course
+     * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function show( $id)
+    public function show(Teacher $teacher)
     {
-        $course = Course::findOrFail($id);
-        $students = Course::find($id)->students;
-
-        return view('courses.show', compact('course','students'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Course  $course
+     * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function edit(Course $course)
+    public function edit(Teacher $teacher)
     {
         //
     }
@@ -69,10 +64,10 @@ class CourseController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Course  $course
+     * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request, Teacher $teacher)
     {
         //
     }
@@ -80,10 +75,10 @@ class CourseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Course  $course
+     * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function destroy(Teacher $teacher)
     {
         //
     }

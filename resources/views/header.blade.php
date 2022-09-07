@@ -12,7 +12,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ route('students.index') }}">Studenti</a>
           </li>
-          
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('courses.index') }}">Corsi</a>
+          </li>
         </ul>
       </div>
     </div>

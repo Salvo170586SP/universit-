@@ -5,23 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+class Teacher extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'surname',
-        'age',
+        'name', 'surname'
     ];
 
-     /**
+    
+      /**
      * Get the players for the team.
      * ******************************
-     * Prendo gli students(studenti) da course(corso)
+     * un corso ha un professore 
      */
-    public function course()
+  /*   public function course()
     {
         return $this->belongsTo(Course::class);
-    }
+    } */
 }
