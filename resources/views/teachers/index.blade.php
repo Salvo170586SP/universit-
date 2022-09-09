@@ -9,6 +9,9 @@
     </div>
 </div>
 <div class="col-12">
+    @include('flash_message')
+</div>
+<div class="col-12">
     <table class="table shadow">
         <thead>
             <tr>

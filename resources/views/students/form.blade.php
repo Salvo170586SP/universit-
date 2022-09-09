@@ -28,8 +28,9 @@
 <div class="my-3">
   <label for="exampleInputPassword1" class="form-label">Corsi</label>
   <select class="form-select" name="course_id" aria-label="Default select example">
+      <option value="">--</option>
       @foreach ($courses as $course)
-          <option value="{{ old('course_id', isset($student) ? $student->course_id : '' )  }}" @selected(isset($student) ? $student->course_id == $course->id : '')>{{ $course->name }}</option>
+          <option value="{{ old('course_id', isset($student) ? $student->course_id : '' )}}" @selected(isset($student) ? $student->course_id == $course->id : '')>{{ $course->name }}</option>
       @endforeach
   </select>
 </div>

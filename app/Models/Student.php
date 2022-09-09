@@ -13,6 +13,7 @@ class Student extends Model
         'name',
         'surname',
         'age',
+        'role_id',
     ];
 
      /**

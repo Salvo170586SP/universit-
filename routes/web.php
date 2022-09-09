@@ -23,6 +23,7 @@ Route::get('/', function () {
 
 //STUDENTI
 Route::resource('students', StudentController::class);
+Route::get('students/get-course/{id}', [StudentController::class, 'getCourse'])->name('students.getCourse');
 /* 
   GET|HEAD        students ....................................... students.index › StudentController@index  
   POST            students ....................................... students.store › StudentController@store  
@@ -32,7 +33,6 @@ Route::resource('students', StudentController::class);
   DELETE          students/{student} ............................. students.destroy › StudentController@destroy  
   GET|HEAD        students/{student}/edit ........................ students.edit › StudentController@edit 
 */
-
 
 
 //CORSI

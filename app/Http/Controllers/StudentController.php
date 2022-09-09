@@ -15,9 +15,10 @@ class StudentController extends Controller
      */
     public function index()
     {
+        $courses = Course::all();
         $students = Student::with('course')->get();
 
-        return view('students.index', compact('students'));
+        return view('students.index', compact('students', 'courses'));
     }
 
     /**
@@ -28,7 +29,8 @@ class StudentController extends Controller
     public function create()
     {
         $courses = Course::all();
-        return view('students.create','courses');
+
+        return view('students.create', compact('courses'));
     }
 
     /**
@@ -43,20 +45,21 @@ class StudentController extends Controller
             'name' => 'required',
             'surname' => 'required',
             'age' => 'required',
-            'course_id' => 'required',
         ]);
 
-        $student = new Student;
+        //dd($request);
+        $data = $request->all();
+        $new_student = Student::create($data);
 
-        $student->name = $request->name;
+        /*$new_student = new Student();
+         $student->name = $request->name;
         $student->surname = $request->surname;
         $student->age = $request->age;
-        $student->course_id = $request->course_id;
+        $student->course_id = $request->course_id; */
 
-        $student->save();
+        $new_student->save();
 
-        return redirect()->route('students.index');
-
+        return redirect()->route('students.index')->with('success', 'Lo studente è stato aggiunto');
     }
 
     /**
@@ -81,7 +84,7 @@ class StudentController extends Controller
     public function edit(Student $student)
     {
         $courses = Course::all();
-        return view('students.edit', compact('student','courses'));
+        return view('students.edit', compact('student', 'courses'));
     }
 
     /**
@@ -97,7 +100,6 @@ class StudentController extends Controller
             'name' => 'required',
             'surname' => 'required',
             'age' => 'required',
-            'course_id' => 'required',
         ]);
 
         $student = Student::findOrFail($id);
@@ -106,8 +108,7 @@ class StudentController extends Controller
 
         $student->save();
 
-        return redirect()->route('students.show', $id);
-
+        return redirect()->route('students.index')->with('seccess', 'Lo studente è stato aggiornato');
     }
 
     /**
@@ -121,6 +122,15 @@ class StudentController extends Controller
         $student->delete();
 
         return redirect()->route('students.index');
-        
+    }
+
+    public function getCourse($id)
+    {
+
+
+        $courses = Course::all();
+        $students = Student::where('course_id', '=', $id)->get();
+
+        return view('students.index', compact('students', 'courses'));
     }
 }

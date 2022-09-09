@@ -9,6 +9,21 @@
             <a class="btn btn-outline-primary" href="{{ route('students.create') }}"><i class="fa-solid fa-plus me-2"></i>
                 Aggiungi nuovo studente</a>
         </div>
+
+        {{-- corsi --}}
+        <div class="col-12 d-flex justify-content-between align-items-center my-4">
+            <div>
+                @foreach($courses as $course)
+                    <a href="{{ route('students.getCourse', $course->id) }}"><button class="btn btn-sm btn-primary me-2">{{ $course->name }}</button></a>
+                @endforeach
+            </div>
+            <a class="btn btn-sm btn-secondary" href="{{ route('students.index') }}">Torna a tutti</a>
+        </div>
+
+        
+        {{-- alert messages --}}
+        @include('flash_message')
+
         <div class="col-12">
             <table class="table shadow">
                 <thead>
@@ -26,12 +41,7 @@
                             <td>{{ $student->name }}</td>
                             <td>{{ $student->surname }}</td>
                             <td>{{ $student->age }}</td>
-
-                            <td>
-                              {{ $student->course->name }}
-                            </td>
-
-
+                            <td>{{ $student->course->name ?? ''}}</td>
                             <td class="d-flex">
                                 <a class="btn btn-sm btn-primary text-light"
                                     href="{{ route('students.show', $student->id) }}"><i class="fa-solid fa-eye"></i></a>
@@ -39,8 +49,8 @@
                                     href="{{ route('students.edit', $student->id) }}"><i
                                         class="fa-solid fa-pen-to-square"></i></a>
                                 <form action="{{ route('students.destroy', $student) }}" method="POST">
-                                    @csrf
                                     @method('DELETE')
+                                    @csrf
                                     <button type="submit" class="btn btn-sm btn-danger"><i
                                             class="fa-solid fa-trash"></i></button>
                                 </form>
