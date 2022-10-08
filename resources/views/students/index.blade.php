@@ -30,6 +30,7 @@
                     <tr>
                         <th scope="col">Nome</th>
                         <th scope="col">Cognome</th>
+                        <th scope="col">Genere</th>
                         <th scope="col">Età</th>
                         <th scope="col">Corso</th>
                         <th scope="col">--</th>
@@ -40,6 +41,7 @@
                         <tr>
                             <td>{{ $student->name }}</td>
                             <td>{{ $student->surname }}</td>
+                            <td>{{ $student->gender ?  'Femmina' : 'Maschio' }}</td>
                             <td>{{ $student->age }}</td>
                             <td>{{ $student->course->name ?? ''}}</td>
                             <td class="d-flex">

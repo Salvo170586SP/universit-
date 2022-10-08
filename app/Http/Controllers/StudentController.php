@@ -41,17 +41,19 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+
+        //dd($request);
         $request->validate([
             'name' => 'required',
             'surname' => 'required',
             'age' => 'required',
+            
         ]);
 
-        //dd($request);
         $data = $request->all();
         $new_student = Student::create($data);
 
-        /*$new_student = new Student();
+        /* $new_student = new Student();
          $student->name = $request->name;
         $student->surname = $request->surname;
         $student->age = $request->age;
@@ -94,19 +96,22 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Student $student)
     {
+        //dd($request);
         $request->validate([
             'name' => 'required',
             'surname' => 'required',
             'age' => 'required',
         ]);
 
-        $student = Student::findOrFail($id);
+       /*  $student = Student::findOrFail($id);
 
         $student->fill($request->all());
 
-        $student->save();
+        $student->save(); */
+        $data = $request->all();
+        $student->update($data);
 
         return redirect()->route('students.index')->with('seccess', 'Lo studente è stato aggiornato');
     }

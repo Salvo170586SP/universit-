@@ -26,15 +26,38 @@
 @enderror
 
 <div class="my-3">
-  <label for="exampleInputPassword1" class="form-label">Corsi</label>
-  <select class="form-select" name="course_id" aria-label="Default select example">
-      <option value="">--</option>
-      @foreach ($courses as $course)
-          <option value="{{ old('course_id', isset($student) ? $student->course_id : '' )}}" @selected(isset($student) ? $student->course_id == $course->id : '')>{{ $course->name }}</option>
-      @endforeach
-  </select>
+    <label for="exampleInputPassword1" class="form-label">Corsi</label>
+    <select class="form-select" name="course_id" aria-label="Default select example">
+        @foreach ($courses as $course)
+            <option
+                @if (isset($student)) value="{{ old('role_id', $course->id) }}" 
+                @selected($student->course_id == $course->id)
+                @else
+                value="{{ $course->id }}" @endif>
+                {{ $course->name }}
+            </option>
+        @endforeach
+
+    </select>
 </div>
-@error('course')
+@error('course_id')
     <div class="alert alert-danger">{{ $message }}</div>
 @enderror
 
+
+<div class="form-check mt-4">
+    <input class="form-check-input" type="radio" name="gender" value="0"
+        @if (isset($student)) @checked(!old('gender', $student->gender )) @endif {{-- {{ old('gender', $student->gender == 0) ? 'checked' : '' }} --}}
+        id="flexRadioDefault1">
+    <label class="form-check-label" for="flexRadioDefault1">
+        Maschio
+    </label>
+</div>
+<div class="form-check mb-4">
+    <input class="form-check-input" type="radio" value="1"
+        @if (isset($student)) @checked(old('gender', $student->gender)) @endif {{-- {{ old('gender', $student->gender == 1) ? 'checked' : '' }} --}}
+        name="gender" id="flexRadioDefault2">
+    <label class="form-check-label" for="flexRadioDefault2">
+        Femmina
+    </label>
+</div>

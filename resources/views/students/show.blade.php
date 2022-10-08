@@ -15,6 +15,7 @@
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item">Età: {{ $student->age }} anni</li>
                   <li class="list-group-item">Corso di laurea: {{ $student->course->name ?? '--'}}</li>
+                  <li class="list-group-item">Genere: {{ $student->gender ?  'Femmina' : 'Maschio' }}</li>
                 </ul>
               </div>
         </div>
